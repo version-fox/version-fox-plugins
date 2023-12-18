@@ -14,9 +14,9 @@ VersionSourceUrl = "https://nodejs.org/dist/index.json"
 
 PLUGIN = {
     name = "node",
-    author = "Lihan",
+    author = "aooohan",
     version = "0.0.1",
-    updateUrl = "https://raw.githubusercontent.com/aooohan/ktorm-generator/main/build.gradle.lua",
+    updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/node/node.lua",
 }
 
 function PLUGIN:PreInstall(ctx)
@@ -32,11 +32,11 @@ function PLUGIN:PreInstall(ctx)
         ext = ".zip"
         osType = "win"
     end
-    local node_url = string.format(nodeDownloadUrl, version, version, osType, arch_type, ext)
-    --local npm_url = string.format(npmDownloadUrl, version, ext)
+    local node_url = nodeDownloadUrl:format(version, version, osType, arch_type, ext)
     return {
         version = version,
         url = node_url,
+        checksum = "",
     }
 end
 
