@@ -7,7 +7,8 @@ local json = require("json")
 OS_TYPE = ""
 ARCH_TYPE = ""
 
-nodeDownloadUrl = "https://nodejs.org/dist/v%s/node-v%s-%s-%s%s"
+NodeBaseUrl = "https://nodejs.org/dist/v%s/"
+FileName = "node-v%s-%s-%s%s"
 npmDownloadUrl = "https://github.com/npm/cli/archive/v%s.%s"
 
 VersionSourceUrl = "https://nodejs.org/dist/index.json"
@@ -16,6 +17,7 @@ PLUGIN = {
     name = "node",
     author = "aooohan",
     version = "0.0.1",
+    description = "Node.js",
     updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/node/node.lua",
 }
 
@@ -32,12 +34,31 @@ function PLUGIN:PreInstall(ctx)
         ext = ".zip"
         osType = "win"
     end
-    local node_url = nodeDownloadUrl:format(version, version, osType, arch_type, ext)
+    local filename = FileName:format(version, osType, arch_type, ext)
+    local baseUrl = NodeBaseUrl:format(version)
+
+    local resp, err = http.get({
+        url = baseUrl .. "SHASUMS256.txt"
+    })
+    if err ~= nil or resp.status_code ~= 200 then
+        error("get checksum failed")
+    end
+    local checksum = get_checksum(resp.body, filename)
     return {
         version = version,
-        url = node_url,
-        checksum = "",
+        url = baseUrl .. filename,
+        checksum = checksum,
     }
+end
+
+function get_checksum(file_content, file_name)
+    for line in string.gmatch(file_content, '([^\n]*)\n?') do
+        local checksum, name = string.match(line, '(%w+)%s+(%S+)')
+        if name == file_name then
+            return checksum
+        end
+    end
+    return nil
 end
 
 function PLUGIN:Available(ctx)

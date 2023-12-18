@@ -9,10 +9,11 @@ AvailableVersionsUrl = "https://api.adoptium.net/v3/info/available_releases"
 DownloadInfoUrl = "https://api.adoptium.net/v3/assets/feature_releases/%s/ga?architecture=%s&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=%s&page=0&page_size=1&project=jdk&sort_method=DEFAULT&sort_order=DESC&vendor=eclipse"
 
 PLUGIN = {
-    name = "adoptium-jdk",
+    name = "adoptium_jdk",
     author = "aooohan",
     version = "0.0.1",
-    updateUrl = "",
+    description = "Adoptium JDK",
+    updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/java/adoptium-jdk.lua",
 }
 
 function PLUGIN:PreInstall(ctx)
@@ -90,7 +91,7 @@ function PLUGIN:Available(ctx)
 end
 
 function PLUGIN:EnvKeys(ctx)
-    local path = ctx.version_path
+    local path = ctx.path
     if OS_TYPE == "darwin" then
         path = path .. "/Contents/Home"
     end
