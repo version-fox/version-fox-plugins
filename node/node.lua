@@ -47,7 +47,7 @@ function PLUGIN:PreInstall(ctx)
     return {
         version = version,
         url = baseUrl .. filename,
-        checksum = checksum,
+        sha256 = checksum,
     }
 end
 

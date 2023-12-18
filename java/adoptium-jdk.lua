@@ -41,7 +41,7 @@ function PLUGIN:PreInstall(ctx)
     return {
         version = version,
         url = binaryInfo.package.link,
-        checksum = binaryInfo.package.checksum,
+        sha256 = binaryInfo.package.checksum,
     }
 
 end
