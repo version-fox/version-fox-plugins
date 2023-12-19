@@ -34,6 +34,10 @@ function PLUGIN:PreInstall(ctx)
         version = "xxx",
         --- Download URL
         url = "xxx",
+        --- SHA256 checksum
+        sha256 = "xxx",
+        --- md5 checksum [optional]
+        md5= "xxx",
     }
 end
 

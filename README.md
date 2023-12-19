@@ -4,7 +4,8 @@
 
 ## Plugins
 
-| Category | Distribution | Plugin Name                                 | URL                                                                                      |
-|----------|--------------|---------------------------------------------|------------------------------------------------------------------------------------------|
-| Node     | -            | [node.lua](./node/node.lua)                 | https://raw.githubusercontent.com/aooohan/version-fox-plugins/main/node/node.lua         |
-| Java     | Adoptium JDK | [adoptium-jdk.lua](./java/adoptium-jdk.lua) | https://raw.githubusercontent.com/aooohan/version-fox-plugins/main/java/adoptium-jdk.lua | 
+| Category | Distribution | Plugin Name                                 | URL                                                                                          |
+|----------|--------------|---------------------------------------------|----------------------------------------------------------------------------------------------|
+| Node     | -            | [node.lua](./node/node.lua)                 | https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/node/node.lua         |
+| Java     | Adoptium JDK | [adoptium-jdk.lua](./java/adoptium-jdk.lua) | https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/adoptium-jdk.lua | 
+| Golang   | Go.dev       | [golang.lua](./golang/golang.lua)           | https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/golang.lua       | 
