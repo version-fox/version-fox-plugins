@@ -34,8 +34,11 @@ function PLUGIN:PreInstall(ctx)
     for _, release in ipairs(releases) do
         if release.version == version then
             return release
+        elseif release.note == version then
+            return release
         end
     end
+    return {}
 end
 
 function PLUGIN:Available(ctx)
@@ -50,15 +53,28 @@ function PLUGIN:Available(ctx)
     local body = json.decode(resp.body)
     local result = {}
     for k, v in pairs(body) do
-        if k ~= 'master' then
-            for _, arch in ipairs(archs) do
-                local key = arch .. "-" .. os
-                if v[key] ~= nil then
-                    table.insert(result, {
-                        version = k,
+        local version = k
+        local note = ""
+        if k == "master" then
+            version = v.version
+            note = "nightly"
+        end
+        for _, arch in ipairs(archs) do
+            local key = arch .. "-" .. os
+            if v[key] ~= nil then
+                if k == "master" then
+                    table.insert(result, 1, {
+                        version = version,
                         url = v[key].tarball,
                         sha256 = v[key].shasum,
-                        note = "",
+                        note = note,
+                    })
+                else
+                    table.insert(result, {
+                        version = version,
+                        url = v[key].tarball,
+                        sha256 = v[key].shasum,
+                        note = note,
                     })
                 end
             end
