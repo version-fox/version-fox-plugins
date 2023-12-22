@@ -74,7 +74,7 @@ function PLUGIN:Available(ctx)
         table.insert(result, {
             version = string.gsub(v.version, "^v", ""),
             note = v.lts and "LTS" or "",
-            additional = {
+            addition = {
                 {
                     name = "npm",
                     version = v.npm,
