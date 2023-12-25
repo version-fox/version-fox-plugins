@@ -1,4 +1,7 @@
 #!/bin/bash
+
+base_url="https://version-fox.github.io/version-fox-plugins"
+
 echo "[" > index.json
 
 generate_list() {
@@ -17,9 +20,10 @@ generate_list() {
                     plugin_author=$(perl -ne 'if(/author\s*=\s*"([^"]*)"/){print $1;}' $file)
                     plugin_version=$(perl -ne 'if(/version\s*=\s*"([^"]*)"/){print $1;}' $file)
                     plugin_desc=$(perl -ne 'if(/description\s*=\s*"([^"]*)"/){print $1;}' $file)
+                    url="$base_url/$(basename "$dir")/$filename.lua"
                     echo "{" >> index.json
                     echo "\"name\": \"$filename\"," >> index.json
-                    echo "\"url\": \"$file\"," >> index.json
+                    echo "\"url\": \"$url\"," >> index.json
                     echo "\"sha256\": \"$sha256\"," >> index.json
                     echo "\"plugin_name\": \"$plugin_name\"," >> index.json
                     echo "\"plugin_author\": \"$plugin_author\"," >> index.json
