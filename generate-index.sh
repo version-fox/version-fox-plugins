@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "[" > index.json
 
 generate_list() {

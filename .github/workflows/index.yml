@@ -37,6 +37,7 @@ jobs:
         run: |
           chmod 777 ./generate-index.sh
           ./generate-index.sh
+          ls .
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
