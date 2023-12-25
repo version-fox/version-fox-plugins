@@ -37,9 +37,12 @@ jobs:
         run: |
           chmod 777 ./generate-index.sh
           ./generate-index.sh
-          ls .
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          ls index.json
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_files: ./index.json 
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
