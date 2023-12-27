@@ -30,7 +30,7 @@ PLUGIN = {
     --- Plugin version
     version = "0.0.1",
     -- Update URL
-    updateUrl = "https://github.com/version-fox/version-fox-plugins/blob/main/golang/golang.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/golang/golang.lua",
 }
 
 function PLUGIN:PreInstall(ctx)

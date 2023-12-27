@@ -27,7 +27,7 @@ PLUGIN = {
     author = "aooohan",
     version = "0.0.1",
     description = "Adoptium JDK",
-    updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/java/adoptium-jdk.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/adoptium-jdk.lua",
 }
 
 function PLUGIN:PreInstall(ctx)

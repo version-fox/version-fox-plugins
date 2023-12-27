@@ -25,7 +25,7 @@ PLUGIN = {
     author = "aooohan",
     version = "0.0.1",
     description = "Zig",
-    updateUrl = "https://github.com/version-fox/version-fox-plugins/blob/main/zig/zig.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/zig/zig.lua",
 }
 
 function PLUGIN:PreInstall(ctx)

@@ -30,7 +30,7 @@ PLUGIN = {
     version = "0.0.1",
     description = "flutter plugin, support for getting stable, dev, beta version",
     -- Update URL
-    updateUrl = "https://github.com/version-fox/version-fox-plugins/blob/main/flutter/flutter.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter.lua",
 }
 
 function PLUGIN:PreInstall(ctx)
