@@ -18,9 +18,11 @@ local json = require("json")
 OS_TYPE = ""
 ARCH_TYPE = ""
 
-VersionURL = "https://storage.googleapis.com/storage/v1/b/dart-archive/o?delimiter=%2F&prefix=channels%2F%s%2Frelease%2F&alt=json"
+VersionURL =
+"https://storage.googleapis.com/storage/v1/b/dart-archive/o?delimiter=/&prefix=channels/%s/release/&alt=json"
 DownloadURL = "https://storage.googleapis.com/dart-archive/channels/%s/release/%s/sdk/dartsdk-%s-%s-release.zip"
 SHA256URL = "https://storage.googleapis.com/dart-archive/channels/%s/release/%s/sdk/dartsdk-%s-%s-release.zip.sha256sum"
+LatestVersionURL = "https://storage.googleapis.com/dart-archive/channels/%s/release/latest/VERSION"
 PLUGIN = {
     --- Plugin name
     name = "dart",
@@ -34,15 +36,34 @@ PLUGIN = {
 }
 
 function PLUGIN:PreInstall(ctx)
-    local version = ctx.version
-    local releases = self:Available({})
-    for _, info in ipairs(releases) do
-        if info.version == version then
-            return {
-                version = info.version,
-                url = info.url,
-                sha256 = info.sha256
-            }
+    local arg = ctx.version
+    local type = getOsTypeAndArch()
+    if arg == "stable" or arg == "dev" or arg == "beta" then
+        local resp, err = http.get({
+            url = LatestVersionURL:format(arg)
+        })
+        if err ~= nil or resp.status_code ~= 200 then
+            error("get version failed" .. err)
+        end
+        local latestVersion = json.decode(resp.body)
+        local version = latestVersion.version
+        local sha256Url = SHA256URL:format(arg, version, type.osType, type.archType)
+        local r = {
+            version = version,
+            url = DownloadURL:format(arg, version, type.osType, type.archType),
+            sha256 = extractChecksum(sha256Url)
+        }
+        return r
+    else
+        local releases = self:Available({})
+        for _, info in ipairs(releases) do
+            if info.version == arg then
+                return {
+                    version = info.version,
+                    url = info.url,
+                    sha256 = extractChecksum(info.sha256)
+                }
+            end
         end
     end
 end
@@ -51,39 +72,55 @@ function PLUGIN:PostInstall(ctx)
 end
 
 function PLUGIN:Available(ctx)
+    local result = {}
+    parseReleases("stable", result)
+    parseReleases("dev", result)
+    parseReleases("beta", result)
+    table.sort(result, function(a, b)
+        return a.version > b.version
+    end)
+    return result
+end
+
+function extractChecksum(url)
+    local resp, err = http.get({
+        url = url
+    })
+    if err ~= nil or resp.status_code ~= 200 then
+        error("get checksum failed" .. err)
+    end
+    local checksum = resp.body:match("^(%w+)%s")
+    return checksum
+end
+
+function parseReleases(devType, resultArr)
     local type = getOsTypeAndArch()
     local resp, err = http.get({
-        url = VersionURL:format("stable")
+        url = VersionURL:format(devType)
     })
     if err ~= nil or resp.status_code ~= 200 then
         error("get version failed" .. err)
     end
     local body = json.decode(resp.body)
-    local result = {}
     for _, info in ipairs(body.prefixes) do
         local version = extractVersions(info)
-        table.insert(result, {
-            version = info.version,
-            url = body.base_url .. "/" .. info.archive,
-            sha256 = info.sha256,
-            note = info.channel,
-            addition = {
-                {
-                    name = "dart",
-                    version = info.dart_sdk_version
-                }
-            }
-        })
+        if version ~= nil then
+            table.insert(resultArr, {
+                version = version,
+                url = DownloadURL:format(devType, version, type.osType, type.archType),
+                sha256 = SHA256URL:format(devType, version, type.osType, type.archType),
+                note = devType,
+            })
+        end
     end
-    return result
 end
 
 function extractVersions(str)
-    local versions = {}
-    for version in string.gmatch(str, "/([^/,]+)/?") do
-        table.insert(versions, version)
+    local version = str:match(".*/(.-)/$")
+    if version and not version:match("^%d+$") and version ~= "latest" then
+        return version
     end
-    return versions
+    return nil
 end
 
 function getOsTypeAndArch()
