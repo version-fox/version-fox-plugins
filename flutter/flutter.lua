@@ -27,17 +27,39 @@ PLUGIN = {
     --- Plugin author
     author = "Han Li",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     description = "flutter plugin, support for getting stable, dev, beta version",
     -- Update URL
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter.lua",
 }
 
 function PLUGIN:PreInstall(ctx)
-    local version = ctx.version
+    local arg = ctx.version
+    if arg == "beta" or arg == "dev" or arg == "stable" then
+        local type = getOsTypeAndArch()
+        local resp, err = http.get({
+            url = BASE_URL:format(type.osType)
+        })
+        if err ~= nil or resp.status_code ~= 200 then
+            error("get version failed" .. err)
+        end
+        local body = json.decode(resp.body)
+        local cr = body.current_release
+        local key = cr[arg]
+        local releases = self:Available({})
+        for _, info in ipairs(releases) do
+            if info.key == key then
+                return {
+                    version = info.version,
+                    url = info.url,
+                    sha256 = info.sha256
+                }
+            end
+        end
+    end
     local releases = self:Available({})
     for _, info in ipairs(releases) do
-        if info.version == version then
+        if info.version == arg then
             return {
                 version = info.version,
                 url = info.url,
@@ -45,6 +67,7 @@ function PLUGIN:PreInstall(ctx)
             }
         end
     end
+    return nil
 end
 
 function PLUGIN:PostInstall(ctx)
@@ -70,6 +93,7 @@ function PLUGIN:Available(ctx)
             version = info.version,
             url = body.base_url .. "/" .. info.archive,
             sha256 = info.sha256,
+            key = info.hash,
             note = info.channel,
             addition = {
                 {
