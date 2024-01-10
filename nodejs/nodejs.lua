@@ -16,7 +16,7 @@ VersionSourceUrl = "https://nodejs.org/dist/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "aooohan",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "Node.js",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/node/node.lua",
 }
@@ -24,6 +24,10 @@ PLUGIN = {
 function PLUGIN:PreInstall(ctx)
     local version = ctx.version
 
+    if version == "latest" then
+        local lists = self:Available({})
+        version = lists[1].version
+    end
     local arch_type = ARCH_TYPE
     local ext = ".tar.gz"
     local osType = OS_TYPE
@@ -49,6 +53,32 @@ function PLUGIN:PreInstall(ctx)
         url = baseUrl .. filename,
         sha256 = checksum,
     }
+end
+
+function compare_versions(v1o, v2o)
+    local v1 = v1o.version
+    local v2 = v2o.version
+    local v1_parts = {}
+    for part in string.gmatch(v1, "[^.]+") do
+        table.insert(v1_parts, tonumber(part))
+    end
+
+    local v2_parts = {}
+    for part in string.gmatch(v2, "[^.]+") do
+        table.insert(v2_parts, tonumber(part))
+    end
+
+    for i = 1, math.max(#v1_parts, #v2_parts) do
+        local v1_part = v1_parts[i] or 0
+        local v2_part = v2_parts[i] or 0
+        if v1_part > v2_part then
+            return true
+        elseif v1_part < v2_part then
+            return false
+        end
+    end
+
+    return false
 end
 
 function get_checksum(file_content, file_name)
@@ -82,6 +112,7 @@ function PLUGIN:Available(ctx)
             }
         })
     end
+    table.sort(result, compare_versions)
     return result
 end
 
