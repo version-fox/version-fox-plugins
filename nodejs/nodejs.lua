@@ -14,7 +14,7 @@ npmDownloadUrl = "https://github.com/npm/cli/archive/v%s.%s"
 VersionSourceUrl = "https://nodejs.org/dist/index.json"
 
 PLUGIN = {
-    name = "node",
+    name = "nodejs",
     author = "aooohan",
     version = "0.0.1",
     description = "Node.js",
