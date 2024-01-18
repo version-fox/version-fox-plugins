@@ -88,6 +88,7 @@ function PLUGIN:Available(ctx)
             end
             table.insert(result, {
                 version = version,
+                note = ""
             })
         end
     end
