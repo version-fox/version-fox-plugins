@@ -18,7 +18,7 @@ local json = require("json")
 OS_TYPE = ""
 ARCH_TYPE = ""
 
-BASE_URL = "https://storage.googleapis.com/flutter_infra_release/releases/releases_%s.json"
+BASE_URL = "https://storage.flutter-io.cn/flutter_infra_release/releases/releases_%s.json"
 
 PLUGIN = {
     --- Plugin name
@@ -26,10 +26,10 @@ PLUGIN = {
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.2",
-    description = "flutter plugin, support for getting stable, dev, beta version",
+    version = "0.0.1",
+    description = "flutter plugin for China, support for getting stable, dev, beta version",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter-cn.lua",
 }
 
 function PLUGIN:PreInstall(ctx)

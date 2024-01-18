@@ -22,7 +22,7 @@ BaseUrl = "https://ziglang.org/download/index.json"
 
 PLUGIN = {
     name = "ziglang",
-    author = "aooohan",
+    author = "Aooohan",
     version = "0.0.2",
     description = "Zig",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/zig/zig.lua",
