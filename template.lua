@@ -14,7 +14,7 @@ OS_TYPE = ""
 ARCH_TYPE = ""
 
 PLUGIN = {
-    --- Plugin name
+    --- Plugin name, only numbers, letters, and underscores are allowed
     name = "java",
     --- Plugin author
     author = "Lihan",

@@ -21,7 +21,7 @@ ARCH_TYPE = ""
 BaseUrl = "https://ziglang.org/download/index.json"
 
 PLUGIN = {
-    name = "ziglang",
+    name = "zig",
     author = "aooohan",
     version = "0.0.2",
     description = "Zig",
