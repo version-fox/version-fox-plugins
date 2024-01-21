@@ -46,7 +46,6 @@ function PLUGIN:PreInstall(ctx)
 end
 
 function PLUGIN:PostInstall(ctx)
-    print("Add version-fox cache folder to path in order to detect dotnet!")
 end
 
 function PLUGIN:Available(ctx)
