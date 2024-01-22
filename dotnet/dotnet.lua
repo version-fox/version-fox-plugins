@@ -22,7 +22,6 @@ ARCH_TYPE = ""
 BARE_URL = "https://dotnet.microsoft.com"
 VERSIONS_URL = "https://dotnet.microsoft.com/en-us/download/dotnet"
 
---- https://go.dev/dl/go1.21.5.darwin-arm64.tar.gz
 PLUGIN = {
     --- Plugin name
     name = "dotnet",
