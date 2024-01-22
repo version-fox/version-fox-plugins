@@ -163,6 +163,10 @@ function PLUGIN:EnvKeys(ctx)
     local mainPath = ctx.path
     return {
         {
+            key = "DOTNET_ROOT",
+            value = mainPath
+        },
+        {
             key = "PATH",
             value = mainPath
         }
