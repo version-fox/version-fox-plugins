@@ -27,7 +27,7 @@ PLUGIN = {
     --- Plugin name
     name = "dart",
     --- Plugin author
-    author = "aooohan",
+    author = "Aooohan",
     --- Plugin version
     version = "0.0.1",
     description = "dart plugin, support for getting stable, dev, beta version",

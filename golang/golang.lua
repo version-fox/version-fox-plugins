@@ -25,7 +25,7 @@ PLUGIN = {
     --- Plugin name
     name = "golang",
     --- Plugin author
-    author = "Han Li",
+    author = "Aooohan",
     --- Plugin version
     version = "0.0.2",
     -- Update URL

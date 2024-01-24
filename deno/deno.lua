@@ -25,7 +25,7 @@ DownloadURL = "https://github.com/denoland/deno/releases/download/v%s/%s"
 
 PLUGIN = {
     name = "deno",
-    author = "aooohan",
+    author = "Aooohan",
     version = "0.0.1",
     description = "Deno plugin, https://deno.com/",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/deno/deno.lua",

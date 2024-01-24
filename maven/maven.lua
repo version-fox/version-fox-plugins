@@ -26,7 +26,7 @@ PLUGIN = {
     --- Plugin name
     name = "maven",
     --- Plugin author
-    author = "Han Li",
+    author = "Aooohan",
     --- Plugin version
     version = "0.0.1",
     -- Update URL
