@@ -21,22 +21,25 @@ ARCH_TYPE = ""
 
 GOLANG_URL = "https://go.dev/dl/"
 
---- https://go.dev/dl/go1.21.5.darwin-arm64.tar.gz
 PLUGIN = {
     --- Plugin name
     name = "golang",
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     -- Update URL
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/golang/golang.lua",
 }
 
 function PLUGIN:PreInstall(ctx)
+    local version = ctx.version
     local releases = getReleases()
+    if version == "latest" then
+        return releases[1]
+    end
     for _, release in ipairs(releases) do
-        if release.version == ctx.version then
+        if release.version == version then
             return release
         end
     end

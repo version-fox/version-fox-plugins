@@ -23,8 +23,8 @@ AvailableVersionsUrl = "https://api.adoptium.net/v3/info/available_releases"
 DownloadInfoUrl = "https://api.adoptium.net/v3/assets/feature_releases/%s/ga?architecture=%s&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=%s&page=0&page_size=1&project=jdk&sort_method=DEFAULT&sort_order=DESC&vendor=eclipse"
 
 PLUGIN = {
-    name = "adoptium_jdk",
-    author = "Aooohan",
+    name = "java",
+    author = "aooohan",
     version = "0.0.1",
     description = "Adoptium JDK",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/adoptium-jdk.lua",
