@@ -118,11 +118,6 @@ end
 
 --- Expansion point
 function PLUGIN:PostInstall(ctx)
-    local rootPath = ctx.rootPath
-    local sdkInfo = ctx.sdkInfo['nodejs']
-    local path = sdkInfo.path
-    local version = sdkInfo.version
-    local name = sdkInfo.name
 end
 
 function PLUGIN:EnvKeys(ctx)
