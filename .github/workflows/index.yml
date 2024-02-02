@@ -46,3 +46,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Install jq
+        run: sudo apt-get install jq
+      - name: Update readme
+        run: |
+          chmod 777 ./update-readme.sh
+          ./update-readme.sh
+          ls index.json 
