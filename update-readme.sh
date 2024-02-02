@@ -30,10 +30,3 @@ done
 echo $table_content
 # Insert the table into the README file
 sed -i "/<!-- TABLE_START -->/,/<!-- TABLE_END -->/c\\<!-- TABLE_START -->\n${table_start}\n${table_header}${table_content}\n<!-- TABLE_END -->" ${readme_file}
-
-# Commit and push the changes
-git config --local user.email "action@github.com"
-git config --local user.name "GitHub Action"
-git add ${readme_file}
-git commit -m "Update README"
-git push
