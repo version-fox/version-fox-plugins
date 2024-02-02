@@ -27,6 +27,11 @@ for row in $(echo "${json}" | jq -r '.[] | @base64'); do
       table_content="${table_content}\n| ${name} | ${version} | ${author} | ${desc} |"
   done
 done
-echo $table_content
+echo "=======successfully generated table content========"
+echo "$table_header"
+echo "$table_content"
 # Insert the table into the README file
 sed -i "/<!-- TABLE_START -->/,/<!-- TABLE_END -->/c\\<!-- TABLE_START -->\n${table_start}\n${table_header}${table_content}\n<!-- TABLE_END -->" ${readme_file}
+
+echo "=======successfully updated README file========"
+cat ${readme_file}
