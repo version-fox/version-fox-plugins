@@ -53,6 +53,11 @@ jobs:
         run: |
           chmod 777 ./update-readme.sh
           ./update-readme.sh
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Update Available Plugins List"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
