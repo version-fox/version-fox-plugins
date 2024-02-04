@@ -18,7 +18,7 @@ PLUGIN = {
     author = "Aooohan",
     version = "0.0.3",
     description = "Node.js",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/node/node.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
 }
 
 function PLUGIN:PreInstall(ctx)
