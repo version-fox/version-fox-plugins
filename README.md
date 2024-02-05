@@ -54,6 +54,12 @@
 <td><small>Adoptium JDK</small></td>
 </tr>
 <tr>
+<td><small><b>java/azul-jdk</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>yimiaoxiehou</small></td>
+<td><small>Azul JDK, also known as Zulu</small></td>
+</tr>
+<tr>
 <td><small><b>maven/maven</b></small></td>
 <td><small>0.0.1</small></td>
 <td><small>Aooohan</small></td>
