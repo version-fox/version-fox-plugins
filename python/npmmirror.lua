@@ -13,20 +13,20 @@
 --   limitations under the License.
 
 local http = require("http")
-local html = require("html")
+local json = require("json")
 OS_TYPE = ""
 ARCH_TYPE = ""
 
-local PYTHON_URL = "https://www.python.org/ftp/python/"
+local PYTHON_URL = "https://registry.npmmirror.com/-/binary/python/"
 
 local DOWNLOAD_SOURCE = {
     --- TODO support zip or web-based installers
-    WEB_BASED = "https://www.python.org/ftp/python/%s/python-%s%s-webinstall.exe",
-    ZIP = "https://www.python.org/ftp/python/%s/python-%s-embed-%s.zip",
+    WEB_BASED = "https://registry.npmmirror.com/-/binary/python/%s/python-%s-%s-webinstall.exe",
+    ZIP = "https://registry.npmmirror.com/-/binary/python/%s/python-%s-embed-%s.zip",
     MSI = "",
     --- Currently only exe installers are supported
-    EXE = "https://www.python.org/ftp/python/%s/python-%s%s.exe",
-    SOURCE = "https://www.python.org/ftp/python/%s/Python-%s.tar.xz"
+    EXE = "https://registry.npmmirror.com/-/binary/python/%s/python-%s%s.exe",
+    SOURCE = "https://registry.npmmirror.com/-/binary/python/%s/Python-%s.tar.xz"
 }
 
 PLUGIN = {
@@ -36,9 +36,9 @@ PLUGIN = {
     author = "aooohan",
     --- Plugin version
     version = "0.0.1",
-    description = "For Windows, only support >=3.5.0, but no restrictions for unix-like",
+    description = "From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like",
     -- Update URL
-    updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/python/python.lua",
+    updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/python/npmmirror.lua",
     minRuntimeVersion = "0.2.3",
 }
 
@@ -154,9 +154,10 @@ function parseVersion()
     if err ~= nil or resp.status_code ~= 200 then
         error("paring release info failed." .. err)
     end
+    local body = json.decode(resp.body)
     local result = {}
-    html.parse(resp.body):find("a"):each(function(i, selection)
-        local href = selection:attr("href")
+    for _, v in ipairs(body) do
+        local href = v.name
         local sn = string.match(href, "^%d")
         local es = string.match(href, "/$")
         if sn and es then
@@ -175,7 +176,7 @@ function parseVersion()
                 })
             end
         end
-    end)
+    end
     table.sort(result, function(a, b)
         return compare_versions(a.version, b.version) > 0
     end)
