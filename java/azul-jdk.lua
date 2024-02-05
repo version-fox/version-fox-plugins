@@ -14,7 +14,6 @@
 
 local http = require("http")
 local json = require("json")
-local html = require("html")
 
 OS_TYPE = ""
 ARCH_TYPE = ""
