@@ -117,7 +117,7 @@ function windowsCompile(ctx)
     local qInstallPath = path
     --local exitCode = os.execute('msiexec /quiet /a "' .. qInstallFile .. '" TargetDir="' .. qInstallPath .. '"')
     print("Installing python, please wait patiently for a while, about two minutes.")
-    local exitCode = os.execute(qInstallFile ' /quiet InstallAllUsers=0 PrependPath=0 TargetDir=' .. qInstallPath)
+    local exitCode = os.execute(qInstallFile .. ' /quiet InstallAllUsers=0 PrependPath=0 TargetDir=' .. qInstallPath)
     if exitCode ~= 0 then
         error("error installing python")
     end
