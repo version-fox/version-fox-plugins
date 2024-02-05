@@ -39,7 +39,7 @@ PLUGIN = {
     description = "For Windows, only support >=3.5.0, but no restrictions for unix-like",
     -- Update URL
     updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/python/python.lua",
-    minRuntimeVersion = "0.2.2",
+    minRuntimeVersion = "0.2.3",
 }
 
 function PLUGIN:PreInstall(ctx)
@@ -112,10 +112,12 @@ function windowsCompile(ctx)
     local sdkInfo = ctx.sdkInfo['python']
     local path = sdkInfo.path
     local filename = sdkInfo.note
-    local qInstallFile = path .. "/" .. filename
+    --- Attention system difference
+    local qInstallFile = path .. "\\" .. filename
     local qInstallPath = path
     --local exitCode = os.execute('msiexec /quiet /a "' .. qInstallFile .. '" TargetDir="' .. qInstallPath .. '"')
-    local exitCode = os.execute('"' .. qInstallFile .. '" /quiet InstallAllUsers=0 PrependPath=0 TargetDir="' .. qInstallPath .. '"')
+    print("Installing python, please wait patiently for a while, about two minutes.")
+    local exitCode = os.execute(qInstallFile ' /quiet InstallAllUsers=0 PrependPath=0 TargetDir=' .. qInstallPath)
     if exitCode ~= 0 then
         error("error installing python")
     end
