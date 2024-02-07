@@ -19,11 +19,12 @@ OS_TYPE = ""
 ARCH_TYPE = ""
 
 BaseUrl = "https://ziglang.org/download/index.json"
+MachUrl = "https://machengine.org/zig/index.json"
 
 PLUGIN = {
     name = "zig",
     author = "aooohan",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "Zig",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/zig/zig.lua",
 }
@@ -31,28 +32,30 @@ PLUGIN = {
 function PLUGIN:PreInstall(ctx)
     local version = ctx.version
     local releases = self:Available({})
-    if version == "latest" then
-        return releases[2]
-    end
     for _, release in ipairs(releases) do
         if release.version == version then
             return release
-        elseif release.note == version then
-            return release
+        else
+            for note in string.gmatch(release.note, "[^|]+") do
+                if note == version then
+                    return release
+                end
+            end
         end
     end
     return {}
 end
+
 function compare_versions(v1o, v2o)
     local v1 = v1o.version
     local v2 = v2o.version
     local v1_parts = {}
-    for part in string.gmatch(v1, "[^.]+") do
+    for part in string.gmatch(v1, "[^.+-]+") do
         table.insert(v1_parts, tonumber(part))
     end
 
     local v2_parts = {}
-    for part in string.gmatch(v2, "[^.]+") do
+    for part in string.gmatch(v2, "[^.+-]+") do
         table.insert(v2_parts, tonumber(part))
     end
 
@@ -70,45 +73,77 @@ function compare_versions(v1o, v2o)
 end
 
 function PLUGIN:Available(ctx)
+    local archs = getArchArr()
+    local os = getOsType()
+    local base = getResults(BaseUrl, archs, os, "tarball")
+    local mach = getResults(MachUrl, archs, os, "zigTarball")
+
+    --merge the two together
+    for k, v in pairs(mach) do
+        if v.note == "nightly" then
+            goto continue
+        end
+        if base[k] == nil then
+            base[k] = v
+        elseif base[k].note ~= "" then
+            base[k].note = base[k].note .. "|" .. v.note
+        end
+        ::continue::
+    end
+
+    -- Need an list to sort it
+    local result = {}
+    for _, v in pairs(base) do
+        table.insert(result, v)
+    end
+    table.sort(result, compare_versions)
+
+    -- Get the first non-noted version to dictate latest
+    for _, v in ipairs(result) do
+        if v.note == "" then
+            v.note = "latest"
+            break
+        end
+    end
+    return result
+end
+
+function getResults(url, archs, os, tar)
     local resp, err = http.get({
-        url = BaseUrl
+        url = url,
     })
     if err ~= nil or resp.status_code ~= 200 then
         error("get version failed" .. err)
     end
-    local archs = getArchArr()
-    local os = getOsType()
     local body = json.decode(resp.body)
     local result = {}
     for k, v in pairs(body) do
         local version = k
         local note = ""
-        if k == "master" then
+        if v.version ~= nil then
             version = v.version
-            note = "nightly"
+            if k == "master" then
+                note = "nightly"
+            else
+                note = k
+            end
         end
         for _, arch in ipairs(archs) do
             local key = arch .. "-" .. os
             if v[key] ~= nil then
-                if k == "master" then
-                    table.insert(result, 1, {
-                        version = version,
-                        url = v[key].tarball,
-                        sha256 = v[key].shasum,
-                        note = note,
-                    })
+                if result[version] ~= nil then
+                    result[version].note = result[version].note .. "|" .. note
                 else
-                    table.insert(result, {
+                    result[version] = {
                         version = version,
-                        url = v[key].tarball,
+                        url = v[key][tar],
                         sha256 = v[key].shasum,
                         note = note,
-                    })
+                    }
                 end
             end
         end
     end
-    table.sort(result, compare_versions)
     return result
 end
 
@@ -141,15 +176,14 @@ function getArchArr()
 end
 
 --- Expansion point
-function PLUGIN:PostInstall(ctx)
-end
+function PLUGIN:PostInstall(ctx) end
 
 function PLUGIN:EnvKeys(ctx)
     local version_path = ctx.path
     return {
         {
             key = "PATH",
-            value = version_path
+            value = version_path,
         },
     }
 end
