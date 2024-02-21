@@ -67,13 +67,13 @@
 </tr>
 <tr>
 <td><small><b>nodejs/nodejs</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.4</small></td>
 <td><small>Aooohan</small></td>
 <td><small>Node.js</small></td>
 </tr>
 <tr>
 <td><small><b>nodejs/npmmirror</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>yimiaoxiehou</small></td>
 <td><small>install Node.js use https://cdn.npmmirror.com</small></td>
 </tr>
