@@ -131,6 +131,7 @@ function PLUGIN:Available(ctx)
         })
     end
     table.sort(result, compare_versions)
+    available_result = result
     return result
 end
 
