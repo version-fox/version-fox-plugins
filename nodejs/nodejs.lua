@@ -16,18 +16,33 @@ VersionSourceUrl = "https://nodejs.org/dist/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "Aooohan",
-    version = "0.0.3",
+    version = "0.0.4",
     description = "Node.js",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
 }
+
+local is_debug = os.getenv("DEBUG")
 
 function PLUGIN:PreInstall(ctx)
     local version = ctx.version
 
     if version == "latest" then
-        local lists = self:Available({})
-        version = lists[1].version
+        local result = self:Available({})
+        version = result['list'][1].version
     end
+
+    if not is_semver_simple(version) then
+        local result = self:Available({})
+        version = result['versions_shorthand'][version]
+        if is_debug then
+            print_table(result, 0)
+        end
+    end
+
+    if (version == nil) then
+        error("version not found for provided version " .. version)
+    end
+
     local arch_type = ARCH_TYPE
     local ext = ".tar.gz"
     local osType = OS_TYPE
@@ -91,7 +106,13 @@ function get_checksum(file_content, file_name)
     return nil
 end
 
+available_result = nil
+
 function PLUGIN:Available(ctx)
+    if available_result then
+        return available_result
+    end
+
     local resp, err = http.get({
         url = VersionSourceUrl
     })
@@ -99,10 +120,14 @@ function PLUGIN:Available(ctx)
         return {}
     end
     local body = json.decode(resp.body)
-    local result = {}
+    local list = {}
+    local versions_shorthand = {}
+
     for _, v in ipairs(body) do
-        table.insert(result, {
-            version = string.gsub(v.version, "^v", ""),
+        local version = string.gsub(v.version, "^v", "")
+        local major, minor = extract_semver(version)
+        table.insert(list, {
+            version = version,
             note = v.lts and "LTS" or "",
             addition = {
                 {
@@ -111,8 +136,34 @@ function PLUGIN:Available(ctx)
                 }
             }
         })
+        if major then
+            if not versions_shorthand[major] then
+                versions_shorthand[major] = version
+            else
+                if compare_versions({version = version}, {version = versions_shorthand[major]}) then
+                    versions_shorthand[major] = version
+                end
+            end
+
+            if minor then
+                local major_minor = major .. "." .. minor
+                if not versions_shorthand[major_minor] then
+                    versions_shorthand[major_minor] = version
+                else
+                    if compare_versions({version = version}, {version = versions_shorthand[major_minor]}) then
+                        versions_shorthand[major_minor] = version
+                    end
+                end
+            end
+        end
     end
-    table.sort(result, compare_versions)
+
+    table.sort(list, compare_versions)
+
+    local result = {}
+    result['list'] = list
+    result['versions_shorthand'] = versions_shorthand
+    available_result = result
     return result
 end
 
@@ -141,5 +192,32 @@ function PLUGIN:EnvKeys(ctx)
                 value = version_path .. "/bin"
             },
         }
+    end
+end
+
+function is_semver_simple(str)
+    -- match pattern: three digits, separated by dot
+    local pattern = "^%d+%.%d+%.%d+$"
+    return str:match(pattern) ~= nil
+end
+
+function extract_semver(semver)
+    local pattern = "^(%d+)%.(%d+)%.[%d.]+$"
+    local major, minor = semver:match(pattern)
+    return major, minor
+end
+
+function print_table(t, indent)
+    indent = indent or 0
+    local strIndent = string.rep("  ", indent)
+    for key, value in pairs(t) do
+        local keyStr = tostring(key)
+        local valueStr = tostring(value)
+        if type(value) == "table" then
+            print(strIndent .. "[" .. keyStr .. "] =>")
+            print_table(value, indent + 1)
+        else
+            print(strIndent .. "[" .. keyStr .. "] => " .. valueStr)
+        end
     end
 end
