@@ -21,22 +21,18 @@ PLUGIN = {
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
 }
 
-local is_debug = os.getenv("DEBUG")
-
 function PLUGIN:PreInstall(ctx)
     local version = ctx.version
 
     if version == "latest" then
-        local result = self:Available({})
-        version = result['list'][1].version
+        local lists = self:Available({})
+        version = lists[1].version
     end
 
     if not is_semver_simple(version) then
-        local result = self:Available({})
-        version = result['versions_shorthand'][version]
-        if is_debug then
-            print_table(result, 0)
-        end
+        local lists = self:Available({})
+        local shorthands = calculate_shorthand(lists)
+        version = shorthands[version]
     end
 
     if (version == nil) then
@@ -120,14 +116,11 @@ function PLUGIN:Available(ctx)
         return {}
     end
     local body = json.decode(resp.body)
-    local list = {}
-    local versions_shorthand = {}
+    local result = {}
 
     for _, v in ipairs(body) do
-        local version = string.gsub(v.version, "^v", "")
-        local major, minor = extract_semver(version)
-        table.insert(list, {
-            version = version,
+        table.insert(result, {
+            version = string.gsub(v.version, "^v", ""),
             note = v.lts and "LTS" or "",
             addition = {
                 {
@@ -136,34 +129,8 @@ function PLUGIN:Available(ctx)
                 }
             }
         })
-        if major then
-            if not versions_shorthand[major] then
-                versions_shorthand[major] = version
-            else
-                if compare_versions({version = version}, {version = versions_shorthand[major]}) then
-                    versions_shorthand[major] = version
-                end
-            end
-
-            if minor then
-                local major_minor = major .. "." .. minor
-                if not versions_shorthand[major_minor] then
-                    versions_shorthand[major_minor] = version
-                else
-                    if compare_versions({version = version}, {version = versions_shorthand[major_minor]}) then
-                        versions_shorthand[major_minor] = version
-                    end
-                end
-            end
-        end
     end
-
-    table.sort(list, compare_versions)
-
-    local result = {}
-    result['list'] = list
-    result['versions_shorthand'] = versions_shorthand
-    available_result = result
+    table.sort(result, compare_versions)
     return result
 end
 
@@ -207,17 +174,33 @@ function extract_semver(semver)
     return major, minor
 end
 
-function print_table(t, indent)
-    indent = indent or 0
-    local strIndent = string.rep("  ", indent)
-    for key, value in pairs(t) do
-        local keyStr = tostring(key)
-        local valueStr = tostring(value)
-        if type(value) == "table" then
-            print(strIndent .. "[" .. keyStr .. "] =>")
-            print_table(value, indent + 1)
-        else
-            print(strIndent .. "[" .. keyStr .. "] => " .. valueStr)
+function calculate_shorthand(list)
+    local versions_shorthand = {}
+    for _, v in ipairs(list) do
+        local version = v.version
+        local major, minor = extract_semver(version)
+
+        if major then
+            if not versions_shorthand[major] then
+                versions_shorthand[major] = version
+            else
+                if compare_versions({version = version}, {version = versions_shorthand[major]}) then
+                    versions_shorthand[major] = version
+                end
+            end
+
+            if minor then
+                local major_minor = major .. "." .. minor
+                if not versions_shorthand[major_minor] then
+                    versions_shorthand[major_minor] = version
+                else
+                    if compare_versions({version = version}, {version = versions_shorthand[major_minor]}) then
+                        versions_shorthand[major_minor] = version
+                    end
+                end
+            end
         end
     end
+
+    return versions_shorthand
 end
