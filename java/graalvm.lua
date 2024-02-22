@@ -32,8 +32,6 @@ function PLUGIN:PreInstall(ctx)
     local type = getOsTypeAndArch()
     local downloadUrl = DownloadInfoUrl:format(version, version,type.osType,type.archType, type.suffixType)
 
-    print(version)
-    print(downloadUrl)
     local resp, err = http.get({
         url = downloadUrl..".sha256"
     })
