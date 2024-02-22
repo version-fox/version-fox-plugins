@@ -23,7 +23,7 @@ PLUGIN = {
     -- Update URL
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/graalvm.lua",
     -- minimum compatible vfox version
-    minRuntimeVersion = "0.2.2",
+    minRuntimeVersion = "0.2.4",
 }
 
 
