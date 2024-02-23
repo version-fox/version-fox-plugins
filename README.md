@@ -60,6 +60,12 @@
 <td><small>Azul JDK, also known as Zulu</small></td>
 </tr>
 <tr>
+<td><small><b>kotlin/kotlin</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>Aooohan</small></td>
+<td><small>Kotlin plugin</small></td>
+</tr>
+<tr>
 <td><small><b>maven/maven</b></small></td>
 <td><small>0.0.1</small></td>
 <td><small>Aooohan</small></td>
