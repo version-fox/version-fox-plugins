@@ -97,7 +97,7 @@
 </tr>
 <tr>
 <td><small><b>zig/zig</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.4</small></td>
 <td><small>aooohan</small></td>
 <td><small>Zig</small></td>
 </tr>
