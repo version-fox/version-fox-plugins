@@ -160,11 +160,11 @@ function getArchArr()
             "x86_64",
         }
     elseif ARCH_TYPE == "arm64" then
-        archType = {
+        return {
             "aarch64",
         }
     elseif ARCH_TYPE == "386" then
-        archType = {
+        return {
             "x86",
             "i386",
         }
