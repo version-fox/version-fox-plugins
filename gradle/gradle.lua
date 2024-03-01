@@ -55,10 +55,34 @@ function PLUGIN:PostInstall(ctx)
    
 end
 
+function compare_versions(v1o, v2o)
+    local v1 = v1o.version
+    local v2 = v2o.version
+    local v1_parts = {}
+    for part in string.gmatch(v1, "[^.]+") do
+        table.insert(v1_parts, tonumber(part))
+    end
+
+    local v2_parts = {}
+    for part in string.gmatch(v2, "[^.]+") do
+        table.insert(v2_parts, tonumber(part))
+    end
+
+    for i = 1, math.max(#v1_parts, #v2_parts) do
+        local v1_part = v1_parts[i] or 0
+        local v2_part = v2_parts[i] or 0
+        if v1_part > v2_part then
+            return true
+        elseif v1_part < v2_part then
+            return false
+        end
+    end
+
+    return false
+end
 
 
 function PLUGIN:Available(ctx)
-    --- get htmlBody
     local resp, err = http.get({
         url = AvailableVersionsUrl
     })
@@ -66,7 +90,6 @@ function PLUGIN:Available(ctx)
         return {}
     end
     local htmlBody = resp.body
-    --- get version
     local htmlContent= [[]] .. htmlBody .. [[]]
 
     local result = {}
@@ -74,6 +97,7 @@ function PLUGIN:Available(ctx)
     for version in htmlContent:gmatch('<a name="(.-)"></a>') do
         table.insert(result, {version=version,note=""})
     end
+    table.sort(result, compare_versions)
 
     return result
 end
@@ -81,10 +105,6 @@ end
 
 function PLUGIN:EnvKeys(ctx)
     local path = ctx.path
-    if OS_TYPE == "darwin" then
-        path = path .. "/Contents/Home"
-    end
-
     return {
         {
             key = "GRADLE_HOME",
