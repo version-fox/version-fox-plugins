@@ -87,7 +87,7 @@ function PLUGIN:Available(ctx)
         url = AvailableVersionsUrl
     })
     if err ~= nil or resp.status_code ~= 200 then
-        return {}
+        error('get release info failed.')
     end
     local htmlBody = resp.body
     local htmlContent= [[]] .. htmlBody .. [[]]
