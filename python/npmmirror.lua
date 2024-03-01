@@ -38,7 +38,7 @@ PLUGIN = {
     version = "0.0.2",
     description = "vfox >= 0.2.3 !!! From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like",
     -- Update URL
-    updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/python/npmmirror.lua",
+    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/python/npmmirror.lua",
     minRuntimeVersion = "0.2.3",
 }
 
