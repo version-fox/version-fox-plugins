@@ -57,14 +57,14 @@ function getOsTypeAndArch()
     elseif OS_TYPE == "linux" then
         osType = "unknown-linux-gnu"
     else
-        error("dart does not support" .. OS_TYPE .. "os")
+        error("Deno does not support " .. OS_TYPE .. " os")
     end
     if ARCH_TYPE == "amd64" then
         archType = "x86_64"
     elseif ARCH_TYPE == "arm64" then
         archType = "aarch64"
     else
-        error("Deno does not support" .. ARCH_TYPE .. "architecture")
+        error("Deno does not support " .. ARCH_TYPE .. " architecture")
     end
     return {
         osType = osType, archType = archType
