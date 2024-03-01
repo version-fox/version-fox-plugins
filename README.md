@@ -85,13 +85,13 @@
 </tr>
 <tr>
 <td><small><b>python/npmmirror</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>aooohan</small></td>
 <td><small>vfox >= 0.2.3 !!! From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
 </tr>
 <tr>
 <td><small><b>python/python</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>aooohan</small></td>
 <td><small>vfox >= 0.2.3 !! For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
 </tr>
