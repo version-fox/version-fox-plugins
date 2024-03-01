@@ -35,7 +35,7 @@ PLUGIN = {
     --- Plugin author
     author = "aooohan",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     description = "vfox >= 0.2.3 !! For Windows, only support >=3.5.0, but no restrictions for unix-like",
     -- Update URL
     updateUrl = "https://github.com/aooohan/version-fox-plugins/blob/main/python/python.lua",
@@ -188,7 +188,7 @@ function PLUGIN:EnvKeys(ctx)
         return {
             {
                 key = "PATH",
-                value = mainPath
+                value = mainPath .. ';' .. mainPath .. "\\Scripts"
             }
         }
     else
