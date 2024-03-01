@@ -48,6 +48,12 @@
 <td><small></small></td>
 </tr>
 <tr>
+<td><small><b>gradle/gradle</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>ahai</small></td>
+<td><small>gradle</small></td>
+</tr>
+<tr>
 <td><small><b>java/adoptium-jdk</b></small></td>
 <td><small>0.0.1</small></td>
 <td><small>aooohan</small></td>
