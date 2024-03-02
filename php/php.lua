@@ -1,4 +1,3 @@
-
 --- Common libraries provided by VersionFox (optional)
 local http = require("http")
 local json = require("json")
@@ -64,7 +63,7 @@ function getReleaseForWindows(version)
     if (ARCH_TYPE == "amd64" or ARCH_TYPE == "arm64") and x64 ~= "" then
         url = baseUrl .. x64
     end
-    if ARCH_TYPE == "386"and x86 ~= "" then
+    if ARCH_TYPE == "386" and x86 ~= "" then
         url = baseUrl .. x86
     end
 
@@ -95,7 +94,7 @@ function getReleaseForLinux(version)
         version = version,
         url = URL .. "/distributions/" .. filename,
         sha256 = sha256,
-        md5= md5
+        md5 = md5
     }
 end
 
