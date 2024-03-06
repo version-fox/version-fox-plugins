@@ -137,8 +137,9 @@ end
 
 function PLUGIN:EnvKeys(ctx)
     local path = ctx.path
+    local version = ctx.version
     if OS_TYPE == "darwin" then
-        path = path .. "/Contents/Home"
+        path = path .. "/zulu-"..version..".jdk/Contents/Home"
     end
     return {
         {
