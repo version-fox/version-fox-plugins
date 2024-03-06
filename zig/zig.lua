@@ -24,7 +24,7 @@ MachUrl = "https://machengine.org/zig/index.json"
 PLUGIN = {
     name = "zig",
     author = "aooohan",
-    version = "0.0.3",
+    version = "0.0.4",
     description = "Zig",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/zig/zig.lua",
 }
@@ -160,11 +160,11 @@ function getArchArr()
             "x86_64",
         }
     elseif ARCH_TYPE == "arm64" then
-        archType = {
+        return {
             "aarch64",
         }
     elseif ARCH_TYPE == "386" then
-        archType = {
+        return {
             "x86",
             "i386",
         }

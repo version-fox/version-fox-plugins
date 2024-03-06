@@ -48,6 +48,12 @@
 <td><small></small></td>
 </tr>
 <tr>
+<td><small><b>gradle/gradle</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>ahai</small></td>
+<td><small>gradle</small></td>
+</tr>
+<tr>
 <td><small><b>java/adoptium-jdk</b></small></td>
 <td><small>0.0.1</small></td>
 <td><small>aooohan</small></td>
@@ -58,6 +64,18 @@
 <td><small>0.0.1</small></td>
 <td><small>yimiaoxiehou</small></td>
 <td><small>Azul JDK, also known as Zulu</small></td>
+</tr>
+<tr>
+<td><small><b>java/graalvm</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>ahai</small></td>
+<td><small>graalvm JDK</small></td>
+</tr>
+<tr>
+<td><small><b>kotlin/kotlin</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>Aooohan</small></td>
+<td><small>Kotlin plugin</small></td>
 </tr>
 <tr>
 <td><small><b>maven/maven</b></small></td>
@@ -79,19 +97,19 @@
 </tr>
 <tr>
 <td><small><b>python/npmmirror</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.3</small></td>
 <td><small>aooohan</small></td>
 <td><small>vfox >= 0.2.3 !!! From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
 </tr>
 <tr>
 <td><small><b>python/python</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.3</small></td>
 <td><small>aooohan</small></td>
 <td><small>vfox >= 0.2.3 !! For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
 </tr>
 <tr>
 <td><small><b>zig/zig</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.4</small></td>
 <td><small>aooohan</small></td>
 <td><small>Zig</small></td>
 </tr>
