@@ -12,15 +12,11 @@ ARCH_TYPE = ""
 URL = "https://www.php.net"
 
 PLUGIN = {
-    --- Plugin name
     name = "php",
-    --- Plugin author
     author = "Chance",
-    --- Plugin version
     version = "0.0.1",
-    -- Update URL
+    description = "PHP",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/php/php.lua",
-    -- minimum compatible vfox version
     minRuntimeVersion = "0.2.2",
 }
 
