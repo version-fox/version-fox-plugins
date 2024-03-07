@@ -19,7 +19,7 @@ OS_TYPE = ""
 ARCH_TYPE = ""
 
 -- api from azul swagger https://api.azul.com/metadata/v1/docs/swagger
-AzulMetadataUrl = "https://api.azul.com/metadata/v1/zulu/packages/?release_status=ga&availability_types=CA&certifications=tck&page=1&page_size=1000&java_package_type=jdk&archive_type=zip&latest=true&os=%s&arch=%s"
+AzulMetadataUrl = "https://api.azul.com/metadata/v1/zulu/packages/?release_status=ga&availability_types=CA&certifications=tck&page=1&page_size=1000&java_package_type=jdk&archive_type=%s&latest=true&os=%s&arch=%s"
 AzulBinaryInfo = "https://api.azul.com/metadata/v1/zulu/packages/%s"
 
 PLUGIN = {
@@ -37,7 +37,11 @@ function PLUGIN:PreInstall(ctx)
     end
 
     local type = getOsTypeAndArch()
-    local url = AzulMetadataUrl:format(type.osType, type.archType)
+    local archive_type = "tar.gz"
+    if OS_TYPE == "windows" then
+        archive_type = "zip"
+    end
+    local url = AzulMetadataUrl:format(archive_type, type.osType, type.archType)
     url = url.."&java_version="..version
     local resp, err = http.get({
         url = url
@@ -100,7 +104,7 @@ function PLUGIN:Available(ctx)
     local body = json.decode(resp.body)
     local ltsVersions = {}
     for _, v in ipairs(body) do
-        table.insert(ltsVersions, v.java_version[1]) 
+        table.insert(ltsVersions, v.java_version[1])
     end
     ltsVersions = removeDuplicates(ltsVersions)
 
@@ -115,9 +119,9 @@ function PLUGIN:Available(ctx)
     end
     body = json.decode(resp.body)
     for _, v in ipairs(body) do
-        table.insert(versions, v.java_version[1]) 
+        table.insert(versions, v.java_version[1])
     end
-    
+
     versions = removeDuplicates(versions)
     for _, v in ipairs(versions) do
         if hasElement(ltsVersions, v) then
@@ -137,9 +141,6 @@ end
 
 function PLUGIN:EnvKeys(ctx)
     local path = ctx.path
-    if OS_TYPE == "darwin" then
-        path = path .. "/Contents/Home"
-    end
     return {
         {
             key = "JAVA_HOME",
@@ -157,18 +158,18 @@ function removeDuplicates(arr)
     local result = {}
     for _, value in ipairs(arr) do
         if not hash[value] then
-        hash[value] = true
-        table.insert(result, value)
+            hash[value] = true
+            table.insert(result, value)
         end
     end
-return result
+    return result
 end
 
 
 function hasElement(array, element)
     for _, value in ipairs(array) do
         if value == element then
-        return true
+            return true
         end
     end
     return false
