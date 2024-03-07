@@ -25,7 +25,7 @@ AzulBinaryInfo = "https://api.azul.com/metadata/v1/zulu/packages/%s"
 PLUGIN = {
     name = "java",
     author = "yimiaoxiehou",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "Azul JDK, also known as Zulu",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-jdk.lua",
 }
