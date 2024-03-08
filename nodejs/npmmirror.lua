@@ -19,6 +19,7 @@ PLUGIN = {
     version = "0.0.2",
     description = "install Node.js use https://cdn.npmmirror.com",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/npmmirror.lua",
+    minRuntimeVersion = "0.2.5",
 }
 
 function PLUGIN:PreInstall(ctx)

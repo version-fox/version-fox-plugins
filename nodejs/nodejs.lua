@@ -19,6 +19,7 @@ PLUGIN = {
     version = "0.0.4",
     description = "Node.js",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
+    minRuntimeVersion = "0.2.5",
 }
 
 function PLUGIN:PreInstall(ctx)
