@@ -25,7 +25,7 @@ AzulBinaryInfo = "https://api.azul.com/metadata/v1/zulu/packages/%s"
 PLUGIN = {
     name = "java",
     author = "yimiaoxiehou",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "Azul JDK, also known as Zulu",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-jdk.lua",
 }
@@ -91,9 +91,13 @@ function getOsTypeAndArch()
 end
 
 function PLUGIN:Available(ctx)
+    local archive_type = "tar.gz"
+    if OS_TYPE == "windows" then
+        archive_type = "zip"
+    end
     local type = getOsTypeAndArch()
     -- get lts version
-    local url = AzulMetadataUrl:format(type.osType, type.archType)
+    local url = AzulMetadataUrl:format(archive_type, type.osType, type.archType)
     url = url.."&support_term=lts"
     local resp, err = http.get({
         url = url
@@ -112,7 +116,7 @@ function PLUGIN:Available(ctx)
     local result = {}
     local versions = {}
     resp, err = http.get({
-        url = AzulMetadataUrl:format(type.osType, type.archType)
+        url = AzulMetadataUrl:format(archive_type, type.osType, type.archType)
     })
     if err ~= nil or resp.status_code ~= 200 then
         return {}
