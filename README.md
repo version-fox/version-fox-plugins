@@ -60,6 +60,12 @@
 <td><small>Adoptium JDK</small></td>
 </tr>
 <tr>
+<td><small><b>java/azul-adoptium-jdk</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>axdank</small></td>
+<td><small>Azul (Zulu) JDK - Adoptium</small></td>
+</tr>
+<tr>
 <td><small><b>java/azul-jdk</b></small></td>
 <td><small>0.0.3</small></td>
 <td><small>yimiaoxiehou</small></td>
@@ -70,6 +76,24 @@
 <td><small>0.0.1</small></td>
 <td><small>ahai</small></td>
 <td><small>graalvm JDK</small></td>
+</tr>
+<tr>
+<td><small><b>java/ibm-adoptium-jdk</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>axdank</small></td>
+<td><small>IBM JDK - Adoptium</small></td>
+</tr>
+<tr>
+<td><small><b>java/microsoft-adoptium-jdk</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>axdank</small></td>
+<td><small>Microsoft JDK - Adoptium</small></td>
+</tr>
+<tr>
+<td><small><b>java/redhat-adoptium-jdk</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>axdank</small></td>
+<td><small>RedHat JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>kotlin/kotlin</b></small></td>
