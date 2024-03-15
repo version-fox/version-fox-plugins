@@ -16,7 +16,7 @@ VersionSourceUrl = "https://nodejs.org/dist/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "Aooohan",
-    version = "0.0.5",
+    version = "0.0.6",
     description = "Node.js",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
 }
