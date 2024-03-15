@@ -49,6 +49,15 @@ function PLUGIN:PreInstall(ctx)
         ext = ".zip"
         osType = "win"
     end
+
+    -- add logic for macOS M1~
+    if OS_TYPE == "darwin" then
+        local major, _ = extract_semver(version)
+        if major and tonumber(major) <= 16 then
+            arch_type = "x86"
+        end
+    end
+
     local filename = FileName:format(version, osType, arch_type, ext)
     local baseUrl = NodeBaseUrl:format(version)
 
