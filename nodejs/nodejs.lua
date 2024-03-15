@@ -16,7 +16,7 @@ VersionSourceUrl = "https://nodejs.org/dist/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "Aooohan",
-    version = "0.0.5",
+    version = "0.0.6",
     description = "Node.js",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
 }
@@ -54,7 +54,7 @@ function PLUGIN:PreInstall(ctx)
     if OS_TYPE == "darwin" then
         local major, _ = extract_semver(version)
         if major and tonumber(major) <= 16 then
-            arch_type = "x86"
+            arch_type = "x64"
         end
     end
 
