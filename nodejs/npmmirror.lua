@@ -54,7 +54,7 @@ function PLUGIN:PreInstall(ctx)
     if OS_TYPE == "darwin" then
         local major, _ = extract_semver(version)
         if major and tonumber(major) <= 16 then
-            arch_type = "x86"
+            arch_type = "x64"
         end
     end
 
