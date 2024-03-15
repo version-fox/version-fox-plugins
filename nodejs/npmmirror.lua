@@ -16,7 +16,7 @@ VersionSourceUrl = "https://cdn.npmmirror.com/binaries/node/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "yimiaoxiehou",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "install Node.js use https://cdn.npmmirror.com",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/npmmirror.lua",
 }
