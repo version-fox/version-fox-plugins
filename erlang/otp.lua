@@ -15,9 +15,9 @@ PLUGIN = {
     --- Plugin version
     version = "0.0.1",
     --- Plugin description
-    description = "install Erlang/OTP by vfox",
+    description = "install Erlang/OTP from source by vfox",
     -- Update URL
-    updateUrl = "{URL}/sdk.lua",
+    updateUrl = "https://github.com/version-fox/version-fox-plugins/erlang/otp.lua",
     -- minimum compatible vfox version
     minRuntimeVersion = "0.2.2",
 }
@@ -49,10 +49,9 @@ function PLUGIN:PreInstall(ctx)
     if erlang_version == nil then
         error("You must provide a version number for Erlang/OTP, eg: vfox install erlang@24.1")
     end
-    local release_link = "https://github.com/erlang/otp/archive/refs/tags/OTP-" .. erlang_version
-    check_version_existence(release_link)
+    check_version_existence("https://github.com/erlang/otp/releases/tag/OTP-" .. erlang_version)
 
-    local download_url = release_link .. ".tar.gz"
+    local download_url = "https://github.com/erlang/otp/archive/refs/tags/OTP-" .. erlang_version .. ".tar.gz"
     return {
         version = erlang_version,
         url = download_url
@@ -67,11 +66,15 @@ function PLUGIN:PostInstall(ctx)
     -- use ENV OTP_COMPILE_ARGS to control compile behavior
     local compile_args = os.getenv("OTP_COMPILE_ARGS") or ""
     print("Erlang/OTP compile with: %s", compile_args)
+    print("If you enable some Erlang/OTP features, maybe you can reference this guide: https://github.com/asdf-vm/asdf-erlang?tab=readme-ov-file#before-asdf-install")
     os.execute("sleep " .. tonumber(3))
 
     local sdkInfo = ctx.sdkInfo['erlang']
     local path = sdkInfo.path
-    os.execute("cd " .. path .. " && ./configure --prefix=" .. path .. "/release " .. compile_args .. "&& make && make install")
+    local status, _exitType, _code = os.execute("cd " .. path .. " && ./configure --prefix=" .. path .. "/release " .. compile_args .. "&& make && make install")
+    if status == false then
+        error("Erlang/OTP install failed, please check the stdout for details. Make sure you have the required utilties: https://www.erlang.org/doc/installation_guide/install#required-utilitiesvc")
+    end
     -- correspond: ./configure --prefix=/home/username/.version-fox/cache/erlang/v-25.3.2.10/erlang-25.3.2.10/release ${compile_args}
 end
 
