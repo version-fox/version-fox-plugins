@@ -71,9 +71,9 @@ function PLUGIN:PostInstall(ctx)
 
     local sdkInfo = ctx.sdkInfo['erlang']
     local path = sdkInfo.path
-    local status, _exitType, _code = os.execute("cd " .. path .. " && ./configure --prefix=" .. path .. "/release " .. compile_args .. "&& make && make install")
-    if status == false then
-        error("Erlang/OTP install failed, please check the stdout for details. Make sure you have the required utilties: https://www.erlang.org/doc/installation_guide/install#required-utilitiesvc")
+    local status = os.execute("cd " .. path .. " && ./configure --prefix=" .. path .. "/release " .. compile_args .. "&& make && make install && make install-docs DOC_TARGETS=chunks")
+    if status ~= 0 then
+        error("Erlang/OTP install failed, please check the stdout for details. Make sure you have the required utilties: https://www.erlang.org/doc/installation_guide/install#required-utilities")
     end
     -- correspond: ./configure --prefix=/home/username/.version-fox/cache/erlang/v-25.3.2.10/erlang-25.3.2.10/release ${compile_args}
 end
