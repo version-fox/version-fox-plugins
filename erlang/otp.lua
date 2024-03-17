@@ -15,7 +15,7 @@ PLUGIN = {
     --- Plugin version
     version = "0.0.1",
     --- Plugin description
-    description = "install Erlang/OTP from source by vfox",
+    description = "Erlang/OTP vfox plugin, support for managing multiple OTP versions.",
     -- Update URL
     updateUrl = "https://github.com/version-fox/version-fox-plugins/erlang/otp.lua",
     -- minimum compatible vfox version
@@ -71,7 +71,12 @@ function PLUGIN:PostInstall(ctx)
 
     local sdkInfo = ctx.sdkInfo['erlang']
     local path = sdkInfo.path
-    local status = os.execute("cd " .. path .. " && ./configure --prefix=" .. path .. "/release " .. compile_args .. "&& make && make install && make install-docs DOC_TARGETS=chunks")
+
+    local install_erlang_cmd = "cd " .. path .. " && ./configure --prefix=" .. path .. "/release " .. compile_args .. "&& make && make install"
+    -- install for IDE docs hits & type hits
+    local install_erlang_docs_cmd = "cd " .. path .. " && make docs DOC_TARGETS=chunks && make release_docs DOC_TARGETS=chunks"
+
+    local status = os.execute(install_erlang_cmd .. " && " ..install_erlang_docs_cmd)
     if status ~= 0 then
         error("Erlang/OTP install failed, please check the stdout for details. Make sure you have the required utilties: https://www.erlang.org/doc/installation_guide/install#required-utilities")
     end
