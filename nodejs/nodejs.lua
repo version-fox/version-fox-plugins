@@ -19,6 +19,7 @@ PLUGIN = {
     version = "0.0.6",
     description = "Node.js",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
+    minRuntimeVersion = "0.2.5",
 }
 
 function PLUGIN:PreInstall(ctx)
@@ -172,6 +173,22 @@ function PLUGIN:EnvKeys(ctx)
     end
 end
 
+function PLUGIN:PreUse(ctx)
+    --- user input version
+    local version = ctx.version
+
+    local shorthands = calculate_shorthand(ctx.installedSdks)
+
+    if not is_semver_simple(version) then
+        version = shorthands[version]
+    end
+
+    --- return the version information
+    return {
+        version = version,
+    }
+end
+
 function is_semver_simple(str)
     -- match pattern: three digits, separated by dot
     local pattern = "^%d+%.%d+%.%d+$"
@@ -186,7 +203,7 @@ end
 
 function calculate_shorthand(list)
     local versions_shorthand = {}
-    for _, v in ipairs(list) do
+    for _, v in pairs(list) do
         local version = v.version
         local major, minor = extract_semver(version)
 
@@ -194,7 +211,7 @@ function calculate_shorthand(list)
             if not versions_shorthand[major] then
                 versions_shorthand[major] = version
             else
-                if compare_versions({version = version}, {version = versions_shorthand[major]}) then
+                if compare_versions({ version = version }, { version = versions_shorthand[major] }) then
                     versions_shorthand[major] = version
                 end
             end
@@ -204,7 +221,7 @@ function calculate_shorthand(list)
                 if not versions_shorthand[major_minor] then
                     versions_shorthand[major_minor] = version
                 else
-                    if compare_versions({version = version}, {version = versions_shorthand[major_minor]}) then
+                    if compare_versions({ version = version }, { version = versions_shorthand[major_minor] }) then
                         versions_shorthand[major_minor] = version
                     end
                 end

@@ -1,4 +1,3 @@
-
 --- Common libraries provided by VersionFox (optional)
 local http = require("http")
 local json = require("json")
@@ -20,38 +19,62 @@ PLUGIN = {
     author = "Lihan",
     --- Plugin version
     version = "0.0.1",
+    --- Plugin description
+    description = "xxx",
     -- Update URL
     updateUrl = "{URL}/sdk.lua",
+    -- minimum compatible vfox version
+    minRuntimeVersion = "0.2.2",
 }
 
---- Return information about the specified version based on ctx.version, including version, download URL, etc.
+--- Returns some pre-installed information, such as version number, download address, local files, etc.
+--- If checksum is provided, vfox will automatically check it for you.
 --- @param ctx table
 --- @field ctx.version string User-input version
 --- @return table Version information
 function PLUGIN:PreInstall(ctx)
+    local version = ctx.version
+    local runtimeVersion = ctx.runtimeVersion
     return {
         --- Version number
         version = "xxx",
-        --- Download URL, support tar.gz tar.xz zip three formats
+        --- remote URL or local file path [optional]
         url = "xxx",
-        --- You just choose one of the checksum algorithms.
-        --- SHA256 checksum, first choice!
+        --- SHA256 checksum [optional]
         sha256 = "xxx",
-        --- sha1 checksum [optional]
-        sha1= "xxx",
-        --- sha512 checksum [optional]
-        sha512= "xxx",
         --- md5 checksum [optional]
-        md5= "xxx",
+        md5 = "xxx",
+        --- sha1 checksum [optional]
+        sha1 = "xxx",
+        --- sha512 checksum [optional]
+        sha512 = "xx",
+        --- additional need files [optional]
+        addition = {
+            {
+                --- additional file name !
+                name = "xxx",
+                --- remote URL or local file path [optional]
+                url = "xxx",
+                --- SHA256 checksum [optional]
+                sha256 = "xxx",
+                --- md5 checksum [optional]
+                md5 = "xxx",
+                --- sha1 checksum [optional]
+                sha1 = "xxx",
+                --- sha512 checksum [optional]
+                sha512 = "xx",
+            }
+        }
     }
 end
 
 --- Extension point, called after PreInstall, can perform additional operations,
---- such as file operations for the SDK installation directory
+--- such as file operations for the SDK installation directory or compile source code
 --- Currently can be left unimplemented!
 function PLUGIN:PostInstall(ctx)
     --- ctx.rootPath SDK installation directory
     local rootPath = ctx.rootPath
+    local runtimeVersion = ctx.runtimeVersion
     local sdkInfo = ctx.sdkInfo['sdk-name']
     local path = sdkInfo.path
     local version = sdkInfo.version
@@ -62,6 +85,7 @@ end
 --- @param ctx table Empty table used as context, for future extension
 --- @return table Descriptions of available versions and accompanying tool descriptions
 function PLUGIN:Available(ctx)
+    local runtimeVersion = ctx.runtimeVersion
     return {
         {
             version = "xxxx",
@@ -80,9 +104,19 @@ end
 --- This allows plugins to define custom environment variables (including PATH settings)
 --- Note: Be sure to distinguish between environment variable settings for different platforms!
 --- @param ctx table Context information
---- @field ctx.version_path string SDK installation directory
+--- @field ctx.path string SDK installation directory
 function PLUGIN:EnvKeys(ctx)
-    local mainPath = ctx.version_path
+    --- this variable is same as ctx.sdkInfo['plugin-name'].path
+    local mainPath = ctx.path
+    local runtimeVersion = ctx.runtimeVersion
+    local mainSdkInfo = ctx.main
+    local mpath = mainSdkInfo.path
+    local mversion = mainSdkInfo.version
+    local mname = mainSdkInfo.name
+    local sdkInfo = ctx.sdkInfo['sdk-name']
+    local path = sdkInfo.path
+    local version = sdkInfo.version
+    local name = sdkInfo.name
     return {
         {
             key = "JAVA_HOME",
@@ -92,5 +126,34 @@ function PLUGIN:EnvKeys(ctx)
             key = "PATH",
             value = mainPath .. "/bin"
         }
+    }
+end
+
+--- When user invoke `use` command, this function will be called to get the
+--- valid version information.
+--- @param ctx table Context information
+function PLUGIN:PreUse(ctx)
+    local runtimeVersion = ctx.runtimeVersion
+    --- user input version
+    local version = ctx.version
+    --- user current used version
+    local previousVersion = ctx.previousVersion
+
+    --- installed sdks
+    local sdkInfo = ctx.installedSdks['version']
+    local path = sdkInfo.path
+    local name = sdkInfo.name
+    local version = sdkInfo.version
+
+    --- working directory
+    local cwd = ctx.cwd
+
+    --- user input scope
+    --- could be one of global/project/session
+    local scope = ctx.scope
+
+    --- return the version information
+    return {
+        version = version,
     }
 end
