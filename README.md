@@ -79,19 +79,19 @@
 </tr>
 <tr>
 <td><small><b>java/ibm-adoptium-jdk</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>axdank</small></td>
 <td><small>IBM JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>java/microsoft-adoptium-jdk</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>axdank</small></td>
 <td><small>Microsoft JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>java/redhat-adoptium-jdk</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>axdank</small></td>
 <td><small>RedHat JDK - Adoptium</small></td>
 </tr>
