@@ -28,7 +28,7 @@ PLUGIN = {
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     -- Update URL
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/maven/maven.lua",
 }
@@ -52,7 +52,8 @@ function PLUGIN:PreInstall(ctx)
                         version = v,
                         url = FILE_URL:format(major, v, v),
                     }
-                    result[k] = resp.body
+                    local removeSpace = string.match(resp.body,"(.-)%s")
+                    result[k] = removeSpace or resp.body
                     return result
                 end
             end
