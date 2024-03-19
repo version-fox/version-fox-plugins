@@ -28,7 +28,7 @@ PLUGIN = {
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     -- Update URL
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/maven/maven.lua",
 }
