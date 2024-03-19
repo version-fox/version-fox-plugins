@@ -116,7 +116,7 @@ function PLUGIN:Available(ctx)
             note = "LTS"
         end
         table.insert(result, {
-            version = v,
+            version = v .. '',
             note = note,
         })
     end

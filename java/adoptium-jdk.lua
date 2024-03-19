@@ -25,7 +25,7 @@ DownloadInfoUrl = "https://api.adoptium.net/v3/assets/feature_releases/%s/ga?arc
 PLUGIN = {
     name = "java",
     author = "aooohan",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "Adoptium JDK",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/adoptium-jdk.lua",
 }
@@ -97,7 +97,7 @@ function PLUGIN:Available(ctx)
             note = "LTS"
         end
         table.insert(result, {
-            version = v,
+            version = v .. '',
             note = note,
         })
     end

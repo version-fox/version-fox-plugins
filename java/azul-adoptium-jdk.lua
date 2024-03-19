@@ -24,7 +24,7 @@ DownloadLatestUrl = "https://marketplace-api.adoptium.net/v1/assets/latest/azul/
 PLUGIN = {
     name = "java",
     author = "axdank",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "Azul (Zulu) JDK - Adoptium",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-adoptium-jdk.lua",
 }
@@ -116,7 +116,7 @@ function PLUGIN:Available(ctx)
             note = "LTS"
         end
         table.insert(result, {
-            version = v,
+            version = v .. '',
             note = note,
         })
     end

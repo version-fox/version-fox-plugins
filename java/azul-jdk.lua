@@ -25,7 +25,7 @@ AzulBinaryInfo = "https://api.azul.com/metadata/v1/zulu/packages/%s"
 PLUGIN = {
     name = "java",
     author = "yimiaoxiehou",
-    version = "0.0.3",
+    version = "0.0.4",
     description = "Azul JDK, also known as Zulu",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-jdk.lua",
 }
@@ -130,12 +130,12 @@ function PLUGIN:Available(ctx)
     for _, v in ipairs(versions) do
         if hasElement(ltsVersions, v) then
             table.insert(result, {
-                version = v,
+                version = v .. '',
                 note = "LTS",
             })
         else
             table.insert(result, {
-                version = v,
+                version = v .. '',
                 note = "",
             })
         end
