@@ -52,7 +52,8 @@ function PLUGIN:PreInstall(ctx)
                         version = v,
                         url = FILE_URL:format(major, v, v),
                     }
-                    result[k] = resp.body
+                    local removeSpace = string.match(resp.body,"(.-)%s")
+                    result[k] = removeSpace or resp.body
                     return result
                 end
             end
