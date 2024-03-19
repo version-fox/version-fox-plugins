@@ -103,7 +103,7 @@
 </tr>
 <tr>
 <td><small><b>maven/maven</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>Aooohan</small></td>
 <td><small></small></td>
 </tr>
