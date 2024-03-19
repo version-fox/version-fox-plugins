@@ -24,7 +24,7 @@ DownloadLatestUrl = "https://marketplace-api.adoptium.net/v1/assets/latest/ibm/%
 PLUGIN = {
     name = "java",
     author = "axdank",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "IBM JDK - Adoptium",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/ibm-adoptium-jdk.lua",
 }
