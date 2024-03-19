@@ -55,19 +55,19 @@
 </tr>
 <tr>
 <td><small><b>java/adoptium-jdk</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>aooohan</small></td>
 <td><small>Adoptium JDK</small></td>
 </tr>
 <tr>
 <td><small><b>java/azul-adoptium-jdk</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>axdank</small></td>
 <td><small>Azul (Zulu) JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>java/azul-jdk</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.4</small></td>
 <td><small>yimiaoxiehou</small></td>
 <td><small>Azul JDK, also known as Zulu</small></td>
 </tr>
