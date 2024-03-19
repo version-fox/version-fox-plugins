@@ -123,7 +123,7 @@
 <td><small><b>python/huaweimirror</b></small></td>
 <td><small>0.0.1</small></td>
 <td><small>b3nguang</small></td>
-<td><small>vfox >= 0.2.3 !!! From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
+<td><small>install Python use https://mirrors.huaweicloud.com</</small></td>
 </tr>
 <tr>
 <td><small><b>python/npmmirror</b></small></td>
