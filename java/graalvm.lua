@@ -17,7 +17,7 @@ PLUGIN = {
     --- Plugin author
     author = "ahai",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     --- Plugin description
     description = "graalvm JDK",
     -- Update URL
@@ -97,7 +97,7 @@ function PLUGIN:Available(ctx)
     for match in htmlContent:gmatch('<button%s+class="downloads_dropbtn"%s+id="selector%-java%-version">(.-)<div%s+class="downloads_dropdown">') do
         for item in match:gmatch('<a[^>]*>(.-)</a>') do
             for number in item:gmatch("%d+") do
-                table.insert(result, {version=tonumber(number),note="latest"})
+                table.insert(result, {version=tonumber(number) .. '',note="latest"})
             end
         end
     end
