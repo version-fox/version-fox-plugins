@@ -73,7 +73,7 @@
 </tr>
 <tr>
 <td><small><b>java/graalvm</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>ahai</small></td>
 <td><small>graalvm JDK</small></td>
 </tr>
