@@ -97,7 +97,7 @@
 </tr>
 <tr>
 <td><small><b>kotlin/kotlin</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.21.9.0</small></td>
 <td><small>Aooohan</small></td>
 <td><small>Kotlin plugin</small></td>
 </tr>
