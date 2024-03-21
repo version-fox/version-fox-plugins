@@ -26,7 +26,7 @@ DownloadURL = "https://github.com/JetBrains/kotlin/releases/download/v%s/kotlin-
 PLUGIN = {
     name = "kotlin",
     author = "Aooohan",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "Kotlin plugin",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/kotlin/kotlin.lua",
     minRuntimeVersion = "0.2.3",
@@ -46,19 +46,50 @@ function PLUGIN:PreInstall(ctx)
     if err ~= nil or resp.status_code ~= 200 then
         error("Current version information not detected.")
     end
-    resp, err = http.get({
-        url = url .. ".sha256"
-    })
-    if err ~= nil or resp.status_code ~= 200 then
-        error("Current version checksum not detected.")
+    if compare_versions({ version = version },{version = "1.9.0"}) or version=="1.9.0" then
+        resp, err = http.get({
+            url = url .. ".sha256"
+        })
+        if err ~= nil or resp.status_code ~= 200 then
+            error("Current version checksum not detected.")
+        end
+        return {
+            version = version,
+            url = url,
+            sha256 = resp.body
+        }
+    else
+        return {
+            version = version,
+            url = url
+        }
+    end
+end
+
+function compare_versions(v1o, v2o)
+    local v1 = v1o.version
+    local v2 = v2o.version
+    local v1_parts = {}
+    for part in string.gmatch(v1, "[^.]+") do
+        table.insert(v1_parts, tonumber(part))
     end
 
-    return {
-        version = version,
-        url = url,
-        sha256 = resp.body
-    }
+    local v2_parts = {}
+    for part in string.gmatch(v2, "[^.]+") do
+        table.insert(v2_parts, tonumber(part))
+    end
 
+    for i = 1, math.max(#v1_parts, #v2_parts) do
+        local v1_part = v1_parts[i] or 0
+        local v2_part = v2_parts[i] or 0
+        if v1_part > v2_part then
+            return true
+        elseif v1_part < v2_part then
+            return false
+        end
+    end
+
+    return false
 end
 
 function PLUGIN:Available(ctx)
