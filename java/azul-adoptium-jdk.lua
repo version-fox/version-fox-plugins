@@ -24,7 +24,7 @@ DownloadLatestUrl = "https://marketplace-api.adoptium.net/v1/assets/latest/azul/
 PLUGIN = {
     name = "java",
     author = "axdank",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "Azul (Zulu) JDK - Adoptium",
     updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-adoptium-jdk.lua",
 }
@@ -125,9 +125,6 @@ end
 
 function PLUGIN:EnvKeys(ctx)
     local path = ctx.path
-    if OS_TYPE == "darwin" then
-        path = path .. "/Contents/Home"
-    end
     return {
         {
             key = "JAVA_HOME",
