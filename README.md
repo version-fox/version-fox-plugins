@@ -120,6 +120,12 @@
 <td><small>install Node.js use https://cdn.npmmirror.com</small></td>
 </tr>
 <tr>
+<td><small><b>python/huaweimirror</b></small></td>
+<td><small>0.0.1</small></td>
+<td><small>b3nguang</small></td>
+<td><small>install Python use https://mirrors.huaweicloud.com</</small></td>
+</tr>
+<tr>
 <td><small><b>python/npmmirror</b></small></td>
 <td><small>0.0.3</small></td>
 <td><small>aooohan</small></td>
