@@ -13,25 +13,25 @@
 </tr>
 <tr>
 <td><small><b>dart/dart</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>Aooohan</small></td>
 <td><small>dart plugin, support for getting stable, dev, beta version</small></td>
 </tr>
 <tr>
 <td><small><b>deno/deno</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>Aooohan</small></td>
 <td><small>Deno plugin, https://deno.com/</small></td>
 </tr>
 <tr>
 <td><small><b>dotnet/dotnet</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>Korbinian Habereder</small></td>
 <td><small>dotnet plugin, support for dotnet sdks 6.0, 7.0, 8.0</small></td>
 </tr>
 <tr>
 <td><small><b>flutter/flutter-cn</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>Aooohan</small></td>
 <td><small>flutter plugin for China, support for getting stable, dev, beta version</small></td>
 </tr>
@@ -43,19 +43,19 @@
 </tr>
 <tr>
 <td><small><b>golang/golang</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.3</small></td>
 <td><small>Aooohan</small></td>
 <td><small></small></td>
 </tr>
 <tr>
 <td><small><b>gradle/gradle</b></small></td>
-<td><small>0.0.1</small></td>
+<td><small>0.0.2</small></td>
 <td><small>ahai</small></td>
 <td><small>gradle</small></td>
 </tr>
 <tr>
 <td><small><b>java/adoptium-jdk</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.3</small></td>
 <td><small>aooohan</small></td>
 <td><small>Adoptium JDK</small></td>
 </tr>
@@ -67,73 +67,73 @@
 </tr>
 <tr>
 <td><small><b>java/azul-jdk</b></small></td>
-<td><small>0.0.4</small></td>
+<td><small>0.0.5</small></td>
 <td><small>yimiaoxiehou</small></td>
 <td><small>Azul JDK, also known as Zulu</small></td>
 </tr>
 <tr>
 <td><small><b>java/graalvm</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.6</small></td>
 <td><small>ahai</small></td>
 <td><small>graalvm JDK</small></td>
 </tr>
 <tr>
 <td><small><b>java/ibm-adoptium-jdk</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.5</small></td>
 <td><small>axdank</small></td>
 <td><small>IBM JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>java/microsoft-adoptium-jdk</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.4</small></td>
 <td><small>axdank</small></td>
 <td><small>Microsoft JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>java/redhat-adoptium-jdk</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.4</small></td>
 <td><small>axdank</small></td>
 <td><small>RedHat JDK - Adoptium</small></td>
 </tr>
 <tr>
 <td><small><b>kotlin/kotlin</b></small></td>
-<td><small>0.0.21.9.0</small></td>
+<td><small>0.0.31.9.0</small></td>
 <td><small>Aooohan</small></td>
 <td><small>Kotlin plugin</small></td>
 </tr>
 <tr>
 <td><small><b>maven/maven</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.3</small></td>
 <td><small>Aooohan</small></td>
 <td><small></small></td>
 </tr>
 <tr>
 <td><small><b>nodejs/nodejs</b></small></td>
-<td><small>0.0.7</small></td>
+<td><small>0.0.8</small></td>
 <td><small>Aooohan</small></td>
 <td><small>Node.js</small></td>
 </tr>
 <tr>
 <td><small><b>nodejs/npmmirror</b></small></td>
-<td><small>0.0.5</small></td>
+<td><small>0.0.6</small></td>
 <td><small>yimiaoxiehou</small></td>
 <td><small>install Node.js use https://cdn.npmmirror.com</small></td>
 </tr>
 <tr>
 <td><small><b>python/npmmirror</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.4</small></td>
 <td><small>aooohan</small></td>
 <td><small>vfox >= 0.2.3 !!! From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
 </tr>
 <tr>
 <td><small><b>python/python</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.4</small></td>
 <td><small>aooohan</small></td>
 <td><small>vfox >= 0.2.3 !! For Windows, only support >=3.5.0, but no restrictions for unix-like</small></td>
 </tr>
 <tr>
 <td><small><b>zig/zig</b></small></td>
-<td><small>0.0.4</small></td>
+<td><small>0.0.5</small></td>
 <td><small>aooohan</small></td>
 <td><small>Zig</small></td>
 </tr>
