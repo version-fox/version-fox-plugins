@@ -25,9 +25,11 @@ DownloadInfoUrl = "https://api.adoptium.net/v3/assets/feature_releases/%s/ga?arc
 PLUGIN = {
     name = "java",
     author = "aooohan",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "Adoptium JDK",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/adoptium-jdk.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/adoptium-jdk.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-java/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

@@ -29,7 +29,9 @@ PLUGIN = {
     version = "0.0.2",
     description = "flutter plugin, support for getting stable, dev, beta version",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-flutter/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

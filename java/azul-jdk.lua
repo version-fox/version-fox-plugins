@@ -25,9 +25,11 @@ AzulBinaryInfo = "https://api.azul.com/metadata/v1/zulu/packages/%s"
 PLUGIN = {
     name = "java",
     author = "yimiaoxiehou",
-    version = "0.0.4",
+    version = "0.0.5",
     description = "Azul JDK, also known as Zulu",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-jdk.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-jdk.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-java/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

@@ -16,10 +16,11 @@ VersionSourceUrl = "https://cdn.npmmirror.com/binaries/node/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "yimiaoxiehou",
-    version = "0.0.5",
+    version = "0.0.6",
     description = "install Node.js use https://cdn.npmmirror.com",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/npmmirror.lua",
-    minRuntimeVersion = "0.2.5",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/npmmirror.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-nodejs/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

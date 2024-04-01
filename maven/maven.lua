@@ -28,9 +28,11 @@ PLUGIN = {
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.2",
+    version = "0.0.3",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/maven/maven.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/maven/maven.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-maven/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

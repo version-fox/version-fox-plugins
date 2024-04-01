@@ -28,10 +28,12 @@ PLUGIN = {
     --- Plugin author
     author = "Korbinian Habereder",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     description = "dotnet plugin, support for dotnet sdks 6.0, 7.0, 8.0",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/dotnet/dotnet.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/dotnet/dotnet.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-dotnet/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

@@ -24,9 +24,11 @@ MachUrl = "https://machengine.org/zig/index.json"
 PLUGIN = {
     name = "zig",
     author = "aooohan",
-    version = "0.0.4",
+    version = "0.0.5",
     description = "Zig",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/zig/zig.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/zig/zig.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-zig/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

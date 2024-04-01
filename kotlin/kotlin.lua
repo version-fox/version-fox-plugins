@@ -26,10 +26,11 @@ DownloadURL = "https://github.com/JetBrains/kotlin/releases/download/v%s/kotlin-
 PLUGIN = {
     name = "kotlin",
     author = "Aooohan",
-    version = "0.0.2",
+    version = "0.0.3",
     description = "Kotlin plugin",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/kotlin/kotlin.lua",
-    minRuntimeVersion = "0.2.3",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/kotlin/kotlin.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-kotlin/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

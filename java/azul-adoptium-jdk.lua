@@ -26,7 +26,9 @@ PLUGIN = {
     author = "axdank",
     version = "0.0.3",
     description = "Azul (Zulu) JDK - Adoptium",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-adoptium-jdk.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/azul-adoptium-jdk.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-java/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

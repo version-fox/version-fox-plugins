@@ -24,9 +24,11 @@ DownloadLatestUrl = "https://marketplace-api.adoptium.net/v1/assets/latest/micro
 PLUGIN = {
     name = "java",
     author = "axdank",
-    version = "0.0.2",
+    version = "0.0.4",
     description = "Microsoft JDK - Adoptium",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/microsoft-adoptium-jdk.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/microsoft-adoptium-jdk.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-java/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

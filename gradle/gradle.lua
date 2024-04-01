@@ -14,13 +14,14 @@ PLUGIN = {
     --- Plugin author
     author = "ahai",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     --- Plugin description
     description = "gradle",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/gradle/gradle.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/gradle/gradle.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-gradle/releases/download/manifest/manifest.json",
     -- minimum compatible vfox version
-    minRuntimeVersion = "0.2.3",
+    minRuntimeVersion = "0.3.0",
 }
 
 AvailableVersionsUrl = "https://gradle.org/releases/"

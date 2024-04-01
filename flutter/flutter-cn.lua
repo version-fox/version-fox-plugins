@@ -26,10 +26,12 @@ PLUGIN = {
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.1",
+    version = "0.0.2",
     description = "flutter plugin for China, support for getting stable, dev, beta version",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter-cn.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter-cn.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-flutter/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

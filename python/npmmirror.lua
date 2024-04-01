@@ -35,11 +35,12 @@ PLUGIN = {
     --- Plugin author
     author = "aooohan",
     --- Plugin version
-    version = "0.0.3",
+    version = "0.0.4",
     description = "vfox >= 0.2.3 !!! From npmmirror.org. For Windows, only support >=3.5.0, but no restrictions for unix-like",
     -- Update URL
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/python/npmmirror.lua",
-    minRuntimeVersion = "0.2.3",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/python/npmmirror.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-python/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

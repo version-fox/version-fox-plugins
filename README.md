@@ -1,6 +1,6 @@
 # VersionFox Plugins
 
-> The repository that stores some useful plugins of VersionFox
+## ⚠️ This repo is not being maintained, please go to [new plugin repository](https://github.com/version-fox/vfox-plugins).
 
 ## Supported Plugins
 <!-- TABLE_START -->

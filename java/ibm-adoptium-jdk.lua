@@ -24,9 +24,11 @@ DownloadLatestUrl = "https://marketplace-api.adoptium.net/v1/assets/latest/ibm/%
 PLUGIN = {
     name = "java",
     author = "axdank",
-    version = "0.0.2",
+    version = "0.0.5",
     description = "IBM JDK - Adoptium",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/ibm-adoptium-jdk.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/java/ibm-adoptium-jdk.lua",
+    minRuntimeVersion = "0.3.0",
+    manifestUrl = "https://github.com/version-fox/vfox-java/releases/download/manifest/manifest.json"
 }
 
 function PLUGIN:PreInstall(ctx)

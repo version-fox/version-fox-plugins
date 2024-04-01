@@ -26,9 +26,11 @@ DownloadURL = "https://github.com/denoland/deno/releases/download/v%s/%s"
 PLUGIN = {
     name = "deno",
     author = "Aooohan",
-    version = "0.0.1",
+    version = "0.0.2",
     description = "Deno plugin, https://deno.com/",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/deno/deno.lua",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/deno/deno.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-deno/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)

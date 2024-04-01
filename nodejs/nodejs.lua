@@ -16,10 +16,11 @@ VersionSourceUrl = "https://nodejs.org/dist/index.json"
 PLUGIN = {
     name = "nodejs",
     author = "Aooohan",
-    version = "0.0.7",
+    version = "0.0.8",
     description = "Node.js",
-    updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
-    minRuntimeVersion = "0.2.5",
+    --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/nodejs/nodejs.lua",
+    manifestUrl = "https://github.com/version-fox/vfox-nodejs/releases/download/manifest/manifest.json",
+    minRuntimeVersion = "0.3.0",
 }
 
 function PLUGIN:PreInstall(ctx)
