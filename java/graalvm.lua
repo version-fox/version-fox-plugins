@@ -13,11 +13,11 @@ DownloadInfoUrl = "https://download.oracle.com/graalvm/%s/latest/graalvm-jdk-%s_
 
 PLUGIN = {
     --- Plugin name
-    name = "graalvm",
+    name = "java",
     --- Plugin author
     author = "ahai",
     --- Plugin version
-    version = "0.0.6",
+    version = "0.0.7",
     --- Plugin description
     description = "graalvm JDK",
     -- Update URL
