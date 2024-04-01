@@ -31,13 +31,13 @@
 </tr>
 <tr>
 <td><small><b>flutter/flutter-cn</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.6</small></td>
 <td><small>Aooohan</small></td>
 <td><small>flutter plugin for China, support for getting stable, dev, beta version</small></td>
 </tr>
 <tr>
 <td><small><b>flutter/flutter</b></small></td>
-<td><small>0.0.2</small></td>
+<td><small>0.0.5</small></td>
 <td><small>Aooohan</small></td>
 <td><small>flutter plugin, support for getting stable, dev, beta version</small></td>
 </tr>
@@ -61,7 +61,7 @@
 </tr>
 <tr>
 <td><small><b>java/azul-adoptium-jdk</b></small></td>
-<td><small>0.0.3</small></td>
+<td><small>0.0.6</small></td>
 <td><small>axdank</small></td>
 <td><small>Azul (Zulu) JDK - Adoptium</small></td>
 </tr>
