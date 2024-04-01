@@ -26,7 +26,7 @@ PLUGIN = {
     --- Plugin author
     author = "Aooohan",
     --- Plugin version
-    version = "0.0.2",
+    version = "0.0.5",
     description = "flutter plugin, support for getting stable, dev, beta version",
     -- Update URL
     --updateUrl = "https://raw.githubusercontent.com/version-fox/version-fox-plugins/main/flutter/flutter.lua",
